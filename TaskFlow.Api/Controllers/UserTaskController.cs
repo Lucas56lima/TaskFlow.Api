@@ -5,7 +5,7 @@ using TaskFlow.Application.Interfaces;
 namespace TaskFlow.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserTaskController : ControllerBase
     {
         private readonly IUserTaskService _service;
@@ -18,7 +18,7 @@ namespace TaskFlow.Api.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("Tasks")]
         public async Task<IActionResult> Get()
         {
             try
@@ -32,13 +32,13 @@ namespace TaskFlow.Api.Controllers
                 return StatusCode(500, "An error occurred while retrieving tasks.");
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("Tasks/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var task = await _service.GetById(id);
             return Ok(task);
         }
-        [HttpPost]
+        [HttpPost("Tasks")]
         public async Task<IActionResult> Add([FromBody] CreateUserTaskDto task)
         {
             try
@@ -52,7 +52,7 @@ namespace TaskFlow.Api.Controllers
                 return StatusCode(500, "An error occurred while creating the task.");
             }
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("Tasks/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
@@ -66,7 +66,7 @@ namespace TaskFlow.Api.Controllers
                 return StatusCode(500, $"An error occurred while deleting the task: {ex.Message}");
             }
         }
-        [HttpPut]
+        [HttpPut("Tasks")]
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto task)
         {
             try
