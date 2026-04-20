@@ -13,7 +13,7 @@ Result Pattern (tratamento de erros)
 FluentValidation (validação de entrada)
 
 1. Clonar o repositório
-git clone [https://seu-repo-aqui.git](https://github.com/Lucas56lima/TaskFlow.Api.git
+git clone [https://seu-repo-aqui.git](https://github.com/Lucas56lima/TaskFlow.Api.git)
 cd TaskFlow
 
 Configuração do banco de dados
