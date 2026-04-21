@@ -6,7 +6,7 @@ namespace TaskFlow.Application.Interfaces
     public interface IUserTaskRespository
     {
         Task<UserTask> GetById(int id);
-        Task<List<UserTask>> GetAll();
+        Task<List<ColumnDto>> GetAll();
         Task Add(UserTask task);
         Task Update(UserTask task);
         Task Delete(int id);

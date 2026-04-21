@@ -2,7 +2,8 @@
 {
     public enum Status
     {
-        Pending,      
+        Pending,
+        InProgress,
         Completed      
     }
 }

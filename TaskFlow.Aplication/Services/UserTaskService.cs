@@ -2,7 +2,6 @@
 using TaskFlow.Application.Dtos;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Domain.Entities;
-using TaskFlow.Domain.Enums;
 
 namespace TaskFlow.Application.Services
 {
@@ -24,9 +23,7 @@ namespace TaskFlow.Application.Services
             if(string.IsNullOrEmpty(task.Description))
             {
                 return ResultT<UserTask>.Fail("Task description cannot be empty.");
-            }
-            task.CreatedAt = DateTime.UtcNow;
-            task.Status = Status.Pending;
+            }          
             var userTask = new UserTask
             {
                 Title = task.Title,
@@ -53,24 +50,24 @@ namespace TaskFlow.Application.Services
             return Result.Ok();
         }
 
-        public async Task<ResultT<List<UserTask>>> GetAll()
+        public async Task<List<ColumnDto>> GetAll()
         {
            var tasks = await _repository.GetAll();
-           return ResultT<List<UserTask>>.Ok(tasks);           
+           return tasks;           
         }
 
-        public async Task<ResultT<UserTask>> GetById(int id)
+        public async Task<UserTask> GetById(int id)
         {
             if(id <= 0)
             {
-                return ResultT<UserTask>.Fail("Invalid task ID.");
+                return new UserTask {};
             }
             var task = await _repository.GetById(id);
             if (task == null)
             {
-                return ResultT<UserTask>.Fail("Task not found.");                
+                return new UserTask {};                
             }
-            return ResultT<UserTask>.Ok(task);
+            return task;
         }
 
         public async Task<Result> Update(UpdateTaskDto task)

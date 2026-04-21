@@ -9,7 +9,7 @@ namespace TaskFlow.Application.Interfaces
         Task<ResultT<UserTask>> Create(CreateUserTaskDto task);
         Task<Result> Update(UpdateTaskDto task);
         Task<Result> Delete(int id);
-        Task<ResultT<List<UserTask>>> GetAll();
-        Task<ResultT<UserTask>> GetById(int id);
+        Task<List<ColumnDto>> GetAll();
+        Task<UserTask> GetById(int id);
     }
 }
